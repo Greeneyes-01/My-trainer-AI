@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Gym Trainer</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    #chatBox {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    input, button {
+      padding: 12px;
+      font-size: 16px;
+      width: 75%;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      width: 23%;
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+    }
+    .msg {
+      background-color: #333;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💪 AI Gym Trainer</h1>
+  <div id="chatBox">
+    <div class="msg"><strong>AI Trainer:</strong> Hi! Tell me your goal like "I want to lose fat" or "Make me muscular".</div>
+    <input type="text" id="userInput" placeholder="Type your goal here..." />
+    <button onclick="getAIResponse()">Go</button>
+    <div id="responses"></div>
+  </div>
+
+  <script>
+    function getAIResponse() {
+      const input = document.getElementById("userInput").value.toLowerCase().trim();
+      const responseDiv = document.getElementById("responses");
+
+      let reply = "";
+
+      if (input.includes("lose fat") || input.includes("weight")) {
+        reply = `
+          <div class='msg'><strong>Workout Plan:</strong><br>
+          • HIIT: 30 mins, 4x/week<br>
+          • Strength: 3x/week<br><br>
+          <strong>Diet Plan:</strong><br>
+          • Calories: 1600-1800/day<br>
+          • High protein, low carb<br>
+          • No sugar/fried foods<br><br>
+          <strong>Tips:</strong> Drink water, walk daily, sleep well.
+          </div>
+        `;
+      } else if (input.includes("muscle") || input.includes("gain")) {
+        reply = `
+          <div class='msg'><strong>Workout Plan:</strong><br>
+          • Weight training: 5x/week<br>
+          • Focus on compound lifts<br><br>
+          <strong>Diet Plan:</strong><br>
+          • 2800+ calories/day<br>
+          • High protein (chicken, eggs, lentils)<br>
+          • Healthy carbs + fats<br><br>
+          <strong>Tips:</strong> Track workouts, eat every 3 hrs.
+          </div>
+        `;
+      } else if (input.includes("fit") || input.includes("healthy") || input.includes("fitness")) {
+        reply = `
+          <div class='msg'><strong>Workout Plan:</strong><br>
+          • Cardio + weights: 3x/week<br>
+          • Yoga/stretching: 2x/week<br><br>
+          <strong>Diet Plan:</strong><br>
+          • Balanced plate: protein + veggies + healthy fats<br><br>
+          <strong>Tips:</strong> Stay active, walk daily, sleep 8 hrs.
+          </div>
+        `;
+      } else if (input === "") {
+        reply = `<div class='msg'>Please type something like "I want to lose fat" or "Help me gain muscle".</div>`;
+      } else {
+        reply = `<div class='msg'>Sorry, I didn’t understand. Try: "I want to lose fat" or "Build muscle".</div>`;
+      }
+
+      responseDiv.innerHTML += reply;
+      document.getElementById("userInput").value = "";
+    }
+  </script>
+
+</body>
+</html>
